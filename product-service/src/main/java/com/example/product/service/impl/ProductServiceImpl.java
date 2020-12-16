@@ -17,6 +17,8 @@ public class ProductServiceImpl implements ProductService {
         TbProduct product = new TbProduct();
         product.setId(id);
         product.setCount(productOld.getCount() - count);
+        int i = 1;
+        i = i / --i;
         productDAO.updateByPrimaryKeySelective(product);
     }
 }

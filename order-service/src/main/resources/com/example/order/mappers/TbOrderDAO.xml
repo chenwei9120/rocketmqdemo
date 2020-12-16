@@ -48,7 +48,7 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="order_no != null">
+      <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
     </set>
@@ -57,7 +57,7 @@
   <update id="updateByPrimaryKey" parameterType="com.example.common.model.TbOrder">
     update tb_order
     set create_time = #{createTime,jdbcType=TIMESTAMP},
-      order_no = #{order_no,jdbcType=VARCHAR}
+      order_no = #{orderNo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

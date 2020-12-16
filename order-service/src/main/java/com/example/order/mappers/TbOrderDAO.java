@@ -1,6 +1,8 @@
 package com.example.order.mappers;
 
 import com.example.common.model.TbOrder;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TbOrderDAO extends MyBatisBaseDao<TbOrder, Integer> {
 
-    TbOrder selectOrderByOrderSn(String orderSn);
+
 }

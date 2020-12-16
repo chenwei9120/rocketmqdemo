@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "transTopic", consumerGroup = "transTopic-group")
-public class OrderPaymentConsumer implements RocketMQListener<String> {
+//@RocketMQMessageListener(topic = "order-settle-topic", consumerGroup = "transTopic-group")
+public class OrderPaymentConsumer {//} implements RocketMQListener<String> {
 
-    @Override
+    //@Override
     public void onMessage(String message) {
         System.out.printf("------- message received: %s \n", message);
     }

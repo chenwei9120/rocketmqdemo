@@ -14,8 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
-@RocketMQMessageListener(topic = "transTopic", consumeMode = ConsumeMode.ORDERLY, consumerGroup = "product-consumer")
-public class RocketMQConsumerListener implements RocketMQListener<TbOrder> {
+@RocketMQMessageListener(topic = "TestMessage",
+        consumeMode = ConsumeMode.ORDERLY, consumerGroup = "product-consumer")//${rocketmq.consumer.group}
+public class RocketMQConsumerListener implements RocketMQListener<String> {
 
     @Autowired
     private RedissonClient redissonClient;
@@ -23,17 +24,22 @@ public class RocketMQConsumerListener implements RocketMQListener<TbOrder> {
     @Autowired(required = false)
     private TbProductDAO productDAO;
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void onMessage(TbOrder order) {
+//    @Override
+//    @Transactional(rollbackFor = Exception.class)
+//    public void onMessage(TbOrder order) {
+//
+//        RLock lock = redissonClient.getLock(order.getOrderNo());
+//        if (lock.tryLock()) {
+//            log.info("lock.tryLock() success");
+//            productDAO.deduct(1L);
+//        } else {
+//            log.info("lock.tryLock() failure");
+//        }
+//        log.info("接收到消息：" + order.getOrderNo());
+//    }
 
-        RLock lock = redissonClient.getLock(order.getOrderNo());
-        if (lock.tryLock()) {
-            log.info("lock.tryLock() success");
-            productDAO.deduct(1L);
-        } else {
-            log.info("lock.tryLock() failure");
-        }
-        log.info("接收到消息：" + order.getOrderNo());
+    @Override
+    public void onMessage(String message) {
+        System.out.println(message);
     }
 }
